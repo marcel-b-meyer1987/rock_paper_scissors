@@ -29,7 +29,7 @@ function getComputerChoice() {
 // prompt the user to enter a valid choice
 function getHumanChoice() {
     let humanChoice = prompt("Please enter 'rock', 'paper' or 'scissors' below.","");
-    console.log(humanChoice);
+    //console.log(humanChoice);
     return humanChoice.toLowerCase();
 }
 
@@ -124,6 +124,23 @@ function playRound() {
 
 }
 
+function gameOver(computerScore, humanScore) {
+
+    console.clear();
+    console.log("--- GAME OVER ---");
+
+    if computerScore > humanScore {
+        console.log("You lose.");
+    }
+    else if computerScore < humanScore {
+        console.log("You win!");
+    }
+    else {
+        console.log("Draw.");
+    }
+
+}
+
 function playGame() {
 
     let humanScore = 0;
@@ -147,6 +164,8 @@ function playGame() {
 // GLOBAL SCOPE CODE BELOW THIS POINT:
 // ===================================
 
+document.querySelector("#start-button")
+    .addEventListener("click", playGame());
 
 
 
