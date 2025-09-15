@@ -20,26 +20,134 @@ function stringifyChoice(choice) {
 // randomly return rock, paper or scissors
 function getComputerChoice() {
     let computerChoice = Math.ceil((Math.random() * 3));
-    console.log(computerChoice);
+    // console.log(computerChoice);
     return stringifyChoice(computerChoice);
 }
 
 
-// 2. getHumanChoice
+// 2. getHumanChoice    
 // prompt the user to enter a valid choice
 function getHumanChoice() {
     let humanChoice = prompt("Please enter 'rock', 'paper' or 'scissors' below.","");
     console.log(humanChoice);
-    return humanChoice;
+    return humanChoice.toLowerCase();
 }
 
-// 3. declare + initialize score variables
-// for humanScore and computerScore
+function displayScoreboard(round) {
+
+    if (round !== undefined) {
+        console.log(`--- Round ${round} ---`);
+    }
+    console.log("--- SCORE ---");
+    console.log(`Computer: \t Player:`);
+    console.log(`${computerScore} \t ${humanScore}`);
+}
 
 // 4. playRound
 // function to play a round: 
 // 4.1 compare getComputerChoice to getHumanChoice
 // 4.2 evaluate winner
 // 4.3 output winner + updated score board
+function playRound() {
 
-// 5. Game Loop = 5x playRound
+    // get input
+    let compChoice = getComputerChoice();
+    console.log(`The computer has chosen ${compChoice}.`);
+
+    let playerChoice = getHumanChoice();
+    console.log(`You have chosen ${playerChoice}.`);
+
+    // compare choices:
+    switch(compChoice)
+    {
+    case "rock":
+        
+        switch(playerChoice) {
+            case "rock":
+                // draw
+                break;
+
+            case "paper":
+                // player wins
+                humanScore++;
+                break;
+
+            case "scissors":
+                // computer wins
+                computerScore++;
+                break;
+        }
+        
+    break;
+
+    case "paper":
+
+        switch(playerChoice) {
+            case "rock":
+                // computer wins
+                computerScore++;
+                break;
+
+            case "paper":
+                // draw
+                break;
+
+            case "scissors":
+                // player wins
+                humanScore++;
+                break;
+        }
+    break;
+
+    case "scissors":
+
+        switch(playerChoice) {
+            case "rock":
+                // player wins
+                humanScore++;
+                break;
+
+            case "paper":
+                // computer wins
+                computerScore++;
+                break;
+
+            case "scissors":
+                //draw
+                break;
+        }
+
+        break;
+
+    return 0;
+    }
+
+}
+
+function playGame() {
+
+    let humanScore = 0;
+    let computerScore = 0;
+
+
+    // 5. Game Loop = 5x playRound();
+    for(let round = 1; round++; round <= 5) {
+
+        playRound();
+        displayScoreboard(round);
+    }
+
+    // display win or lose
+    gameOver(computerScore, humanScore);
+
+    return 0;
+}
+
+
+// GLOBAL SCOPE CODE BELOW THIS POINT:
+// ===================================
+
+
+
+
+    
