@@ -118,8 +118,6 @@ function playRound() {
         }
 
         break;
-
-    return 0;
     }
 
 }
@@ -129,10 +127,10 @@ function gameOver(computerScore, humanScore) {
     console.clear();
     console.log("--- GAME OVER ---");
 
-    if computerScore > humanScore {
+    if (computerScore > humanScore) {
         console.log("You lose.");
     }
-    else if computerScore < humanScore {
+    else if (computerScore < humanScore) {
         console.log("You win!");
     }
     else {
@@ -141,21 +139,22 @@ function gameOver(computerScore, humanScore) {
 
 }
 
+
 function playGame() {
 
-    let humanScore = 0;
-    let computerScore = 0;
-
+    // reset global variables
+    humanScore = 0;
+    computerScore = 0;
 
     // 5. Game Loop = 5x playRound();
-    for(let round = 1; round++; round <= 5) {
+    for(let round = 1; round <= 5; round++) {
 
         playRound();
         displayScoreboard(round);
     }
 
     // display win or lose
-    gameOver(computerScore, humanScore);
+    // gameOver(computerScore, humanScore);
 
     return 0;
 }
@@ -164,9 +163,14 @@ function playGame() {
 // GLOBAL SCOPE CODE BELOW THIS POINT:
 // ===================================
 
+
+let humanScore = 0;
+let computerScore = 0;
+
+/*
 document.querySelector("#start-button")
     .addEventListener("click", playGame());
-
+*/
 
 
     
