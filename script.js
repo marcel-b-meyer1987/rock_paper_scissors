@@ -30,7 +30,12 @@ function getComputerChoice() {
 function getHumanChoice() {
     let humanChoice = prompt("Please enter 'rock', 'paper' or 'scissors' below.","");
     //console.log(humanChoice);
-    return humanChoice.toLowerCase();
+    if (humanChoice === null) {
+        return null;
+    }
+    else {
+        return humanChoice.toLowerCase();
+    }    
 }
 
 function displayScoreboard(round) {
@@ -52,10 +57,14 @@ function playRound() {
 
     // get input
     let compChoice = getComputerChoice();
-    console.log(`The computer has chosen ${compChoice}.`);
+    // console.log(`The computer has chosen ${compChoice}.`);
 
     let playerChoice = getHumanChoice();
-    console.log(`You have chosen ${playerChoice}.`);
+    // exit game if player clicks abort
+    if (playerChoice === null) {
+        return 1;
+    }
+    // console.log(`You have chosen ${playerChoice}.`);
 
     // compare choices:
     switch(compChoice)
@@ -125,10 +134,10 @@ function playRound() {
                 console.log("Draw!");
                 break;
         }
-
         break;
     }
 
+    return 0;
 }
 
 function gameOver(computerScore, humanScore) {
@@ -152,21 +161,31 @@ function gameOver(computerScore, humanScore) {
 
 function playGame() {
 
-    // reset global variables
+    // reset global variables + clear console
     humanScore = 0;
     computerScore = 0;
+    console.clear();
+
+    // set state for userHasQuit to 0
+    let userHasQuit = 0;
 
     // 5. Game Loop = 5x playRound();
     for(let round = 1; round <= 5; round++) {
 
-        playRound();
+        userHasQuit = playRound();
+        if (userHasQuit === 1) {
+            break;
+        }
         displayScoreboard(round);
     }
 
     // display win or lose
     gameOver(computerScore, humanScore);
+    if (userHasQuit === 1) {
+        console.log("Game quit by player.");
+    }
 
-    return 0;
+    return userHasQuit;
 }
 
 
