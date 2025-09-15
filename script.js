@@ -65,16 +65,19 @@ function playRound() {
         switch(playerChoice) {
             case "rock":
                 // draw
+                console.log("Draw!");
                 break;
 
             case "paper":
                 // player wins
                 humanScore++;
+                console.log("You win! Paper beats rock.");
                 break;
 
             case "scissors":
                 // computer wins
                 computerScore++;
+                console.log("You lose! Rock beats scissors.");
                 break;
         }
         
@@ -86,15 +89,18 @@ function playRound() {
             case "rock":
                 // computer wins
                 computerScore++;
+                console.log("You lose! Paper beats rock.");
                 break;
 
             case "paper":
                 // draw
+                console.log("Draw!");
                 break;
 
             case "scissors":
                 // player wins
                 humanScore++;
+                console.log("You win! Scissors beats paper.");
                 break;
         }
     break;
@@ -105,15 +111,18 @@ function playRound() {
             case "rock":
                 // player wins
                 humanScore++;
+                console.log("You win! Rock beats scissors.");
                 break;
 
             case "paper":
                 // computer wins
                 computerScore++;
+                console.log("You lose! Scissors beats paper.");
                 break;
 
             case "scissors":
                 //draw
+                console.log("Draw!");
                 break;
         }
 
@@ -125,6 +134,7 @@ function playRound() {
 function gameOver(computerScore, humanScore) {
 
     console.clear();
+    displayScoreboard();
     console.log("--- GAME OVER ---");
 
     if (computerScore > humanScore) {
@@ -154,7 +164,7 @@ function playGame() {
     }
 
     // display win or lose
-    // gameOver(computerScore, humanScore);
+    gameOver(computerScore, humanScore);
 
     return 0;
 }
@@ -171,6 +181,5 @@ let computerScore = 0;
 document.querySelector("#start-button")
     .addEventListener("click", playGame());
 */
-
 
     
